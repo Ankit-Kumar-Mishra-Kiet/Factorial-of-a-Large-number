@@ -1,0 +1,43 @@
+//Name Ankit Kumar Mishra
+//Roll no 2100290120030
+//Program to implement Factorial of a large number using array.
+#include<stdio.h>
+#include<stdlib.h>
+#define Max 5000
+int multiply(int res[], int x,int resize);
+void fact(int n)
+{
+    int res[Max];
+    res[0]=1;
+    int resize=1;
+    for(int x=2;x<=n;x++)
+    resize=multiply(res,x,resize); 
+    
+    for(int i=resize-1;i>=0;i--)
+    printf("%d",res[i]);
+}
+int multiply(int res[],int x,int resize)
+{
+    int prod,carry=0;
+    for(int i=0;i<resize;i++)
+    {
+        prod=res[i]*x+carry;
+        res[i]=prod%10;
+        carry=prod/10;
+        
+    }
+    while(carry)
+    {
+        res[resize]=carry%10;
+        carry/=10;
+        resize++;
+    }
+    return resize;
+}
+
+int main()
+{int n;
+    scanf("%d",&n);
+    fact(n);
+    return 0;
+}
